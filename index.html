@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roman.com - Oyun Dünyası</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:#07030d;
+color:white;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:100;
+background:#0d0615ee;
+backdrop-filter:blur(15px);
+border-bottom:1px solid #69228a;
+}
+
+.nav{
+height:65px;
+max-width:1500px;
+margin:auto;
+display:flex;
+align-items:center;
+gap:12px;
+padding:0 18px;
+}
+
+.logo{
+font-size:27px;
+font-weight:900;
+white-space:nowrap;
+color:white;
+text-shadow:
+0 0 8px #bd38ff,
+0 0 25px #9d20ff;
+}
+
+.logo span{
+color:#d65cff;
+}
+
+.navbtn{
+background:#180a23;
+border:1px solid #592070;
+color:white;
+border-radius:10px;
+padding:10px 14px;
+cursor:pointer;
+}
+
+.navbtn:hover{
+background:#37104c;
+border-color:#b33aff;
+}
+
+.search{
+flex:1;
+height:42px;
+background:#16091f;
+border:1px solid #602574;
+border-radius:12px;
+color:white;
+padding:0 16px;
+outline:none;
+}
+
+.search:focus{
+border-color:#c03cff;
+box-shadow:0 0 15px #a52aff44;
+}
+
+/* SIDEBAR */
+
+.page{
+max-width:1500px;
+margin:auto;
+display:grid;
+grid-template-columns:220px 1fr;
+gap:18px;
+padding:18px;
+}
+
+.sidebar{
+background:#0e0615;
+border:1px solid #3d194d;
+border-radius:16px;
+padding:12px;
+height:max-content;
+position:sticky;
+top:83px;
+}
+
+.sidebar h3{
+margin:8px 10px 15px;
+}
+
+.menu{
+display:block;
+width:100%;
+text-align:left;
+padding:11px 12px;
+margin:3px 0;
+border:0;
+background:transparent;
+color:#cbbbd2;
+border-radius:9px;
+cursor:pointer;
+}
+
+.menu:hover,
+.menu.active{
+background:#321044;
+color:white;
+}
+
+/* HERO */
+
+.hero{
+min-height:300px;
+border-radius:22px;
+padding:35px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+overflow:hidden;
+border:1px solid #74249a;
+background:
+radial-gradient(circle at 80% 30%,#8a27b855,transparent 30%),
+linear-gradient(120deg,#291034,#0d0614 70%);
+box-shadow:0 0 40px #8d25bd22;
+}
+
+.hero h1{
+font-size:clamp(36px,6vw,65px);
+margin:0 0 10px;
+}
+
+.hero p{
+color:#bdaec4;
+font-size:17px;
+max-width:650px;
+}
+
+.neon{
+color:#d45cff;
+text-shadow:0 0 15px #bd31ff;
+}
+
+.heroBtn{
+border:0;
+background:linear-gradient(135deg,#a82de0,#6322bd);
+color:white;
+font-weight:bold;
+padding:14px 24px;
+border-radius:12px;
+cursor:pointer;
+font-size:16px;
+box-shadow:0 0 25px #9d2cff55;
+}
+
+.heroBtn:hover{
+transform:scale(1.04);
+}
+
+/* SECTIONS */
+
+.section{
+margin-top:25px;
+}
+
+.sectionHead{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:13px;
+}
+
+.sectionHead h2{
+margin:0;
+font-size:22px;
+}
+
+.see{
+background:none;
+border:0;
+color:#d15aff;
+cursor:pointer;
+}
+
+/* FEATURED */
+
+.featured{
+display:grid;
+grid-template-columns:2fr 1fr 1fr;
+gap:12px;
+}
+
+.feature{
+height:230px;
+border-radius:16px;
+padding:18px;
+display:flex;
+align-items:end;
+position:relative;
+overflow:hidden;
+cursor:pointer;
+border:1px solid #542063;
+background:linear-gradient(145deg,#6c2190,#15071d);
+transition:.2s;
+}
+
+.feature:hover{
+transform:translateY(-4px);
+border-color:#c54aff;
+box-shadow:0 10px 30px #a52aff33;
+}
+
+.feature:nth-child(2){
+background:linear-gradient(145deg,#1c54a0,#10051d);
+}
+
+.feature:nth-child(3){
+background:linear-gradient(145deg,#b84b26,#190a12);
+}
+
+.featureContent{
+position:relative;
+z-index:2;
+}
+
+.feature h3{
+font-size:25px;
+margin:0 0 5px;
+}
+
+.feature p{
+margin:0;
+color:#ddd;
+}
+
+/* GAMES */
+
+.gameGrid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(175px,1fr));
+gap:13px;
+}
+
+.game{
+background:#100618;
+border:1px solid #3e1b4e;
+border-radius:14px;
+overflow:hidden;
+cursor:pointer;
+transition:.18s;
+}
+
+.game:hover{
+transform:translateY(-4px);
+border-color:#b93cff;
+box-shadow:0 10px 25px #9c2aff25;
+}
+
+.gameImg{
+height:125px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:52px;
+position:relative;
+}
+
+.gameImg span{
+position:absolute;
+bottom:8px;
+left:8px;
+background:#0009;
+padding:4px 7px;
+font-size:10px;
+border-radius:6px;
+}
+
+.gameBody{
+padding:10px;
+}
+
+.gameTitle{
+font-weight:bold;
+font-size:15px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.gameInfo{
+font-size:12px;
+color:#9d8da4;
+margin-top:5px;
+}
+
+.playBtn{
+width:100%;
+margin-top:9px;
+border:0;
+background:#7922a7;
+color:white;
+padding:8px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.playBtn:hover{
+background:#a42bdf;
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:#000b;
+z-index:200;
+align-items:center;
+justify-content:center;
+padding:15px;
+}
+
+.modal.open{
+display:flex;
+}
+
+.modalBox{
+width:min(900px,100%);
+max-height:90vh;
+overflow:auto;
+background:#0e0615;
+border:1px solid #a635d0;
+border-radius:18px;
+padding:20px;
+box-shadow:0 0 60px #a52cff44;
+}
+
+.close{
+float:right;
+background:#28102f;
+border:1px solid #683077;
+color:white;
+padding:7px 11px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.stage{
+min-height:360px;
+border:1px solid #49205a;
+border-radius:13px;
+background:#050208;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+.center{
+text-align:center;
+width:min(500px,100%);
+}
+
+.score{
+font-size:48px;
+color:#d45cff;
+font-weight:bold;
+margin:15px;
+}
+
+.action{
+background:#9229c6;
+border:0;
+color:white;
+padding:13px 22px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.action:hover{
+background:#b438ed;
+}
+
+/* ADMIN */
+
+.adminStats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:10px;
+margin:15px 0;
+}
+
+.stat{
+background:#190a22;
+border:1px solid #51205f;
+border-radius:12px;
+padding:14px;
+}
+
+.stat b{
+display:block;
+font-size:25px;
+color:#d45cff;
+margin-top:5px;
+}
+
+.adminInput{
+background:#180922;
+color:white;
+border:1px solid #652778;
+padding:10px;
+border-radius:8px;
+margin:3px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.page{
+grid-template-columns:1fr;
+}
+
+.sidebar{
+position:static;
+display:flex;
+overflow:auto;
+gap:5px;
+}
+
+.sidebar h3{
+display:none;
+}
+
+.menu{
+white-space:nowrap;
+width:auto;
+}
+
+.featured{
+grid-template-columns:1fr;
+}
+
+.feature{
+height:190px;
+}
+
+}
+
+@media(max-width:600px){
+
+.nav{
+flex-wrap:wrap;
+height:auto;
+padding:10px;
+}
+
+.search{
+order:5;
+flex-basis:100%;
+}
+
+.gameGrid{
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+}
+
+.gameImg{
+height:105px;
+font-size:40px;
+}
+
+.hero{
+padding:22px;
+}
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+Roman<span>.com</span>
+</div>
+
+<button class="navbtn"
+onclick="home()">
+Ana Sayfa
+</button>
+
+<input
+id="search"
+class="search"
+placeholder="🔎 Oyun ara..."
+oninput="render()"
+>
+
+<button class="navbtn"
+onclick="randomGame()">
+🎲 Şanslı
+</button>
+
+<button class="navbtn"
+onclick="openOwner()">
+👑 Kurucu
+</button>
+
+</div>
+
+</header>
+
+
+<div class="page">
+
+
+<aside class="sidebar">
+
+<h3>MENÜ</h3>
+
+<button class="menu active"
+onclick="category('Tümü',this)">
+🏠 Keşfet
+</button>
+
+<button class="menu"
+onclick="category('Popüler',this)">
+🔥 Popüler
+</button>
+
+<button class="menu"
+onclick="category('Yeni',this)">
+✨ Yeni Oyunlar
+</button>
+
+<button class="menu"
+onclick="category('Aksiyon',this)">
+⚔️ Aksiyon
+</button>
+
+<button class="menu"
+onclick="category('Bulmaca',this)">
+🧩 Bulmaca
+</button>
+
+<button class="menu"
+onclick="category('Yarış',this)">
+🏎️ Yarış
+</button>
+
+<button class="menu"
+onclick="category('Spor',this)">
+⚽ Spor
+</button>
+
+<button class="menu"
+onclick="category('2 Oyuncu',this)">
+👥 2 Oyuncu
+</button>
+
+<button class="menu"
+onclick="category('Arcade',this)">
+🕹️ Arcade
+</button>
+
+<hr>
+
+<button class="menu"
+onclick="randomGame()">
+🎮 Rastgele Oyna
+</button>
+
+<button class="menu"
+onclick="openOwner()">
+⚙️ Yönetim
+</button>
+
+</aside>
+
+
+<main>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div>
+
+<h1>
+Kendi oyun
+<span class="neon">
+dünyanı keşfet.
+</span>
+</h1>
+
+<p>
+Roman.com'da yüzlerce farklı oyun arasından seçim yap.
+Aksiyon, yarış, bulmaca, spor ve 2 oyunculu oyunlar seni bekliyor.
+</p>
+
+<button
+class="heroBtn"
+onclick="randomGame()">
+▶ Şimdi Oyna
+</button>
+
+</div>
+
+<div style="font-size:120px">
+🎮
+</div>
+
+</section>
+
+
+<!-- ÖNE ÇIKAN -->
+
+<section class="section">
+
+<div class="sectionHead">
+
+<h2>
+🔥 Öne Çıkan Oyunlar
+</h2>
+
+<button class="see"
+onclick="showPopular()">
+Hepsini gör →
+</button>
+
+</div>
+
+
+<div class="featured">
+
+<div class="feature"
+onclick="play(1)">
+
+<div class="featureContent">
+
+<h3>🚀 Neon Rush</h3>
+
+<p>Hızlı ve neon dolu macera</p>
+
+</div>
+
+</div>
+
+
+<div class="feature"
+onclick="play(2)">
+
+<div class="featureContent">
+
+<h3>⚔️ Pixel Arena</h3>
+
+<p>Savaş ve aksiyon</p>
+
+</div>
+
+</div>
+
+
+<div class="feature"
+onclick="play(3)">
+
+<div class="featureContent">
+
+<h3>🏎️ Turbo Drift</h3>
+
+<p>Rakiplerini geç</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- POPÜLER -->
+
+<section class="section">
+
+<div class="sectionHead">
+
+<h2>
+🔥 Popüler Oyunlar
+</h2>
+
+<button
+class="see"
+onclick="category('Popüler')">
+Daha fazla →
+</button>
+
+</div>
+
+<div id="popular"
+class="gameGrid">
+</div>
+
+</section>
+
+
+<!-- YENİ -->
+
+<section class="section">
+
+<div class="sectionHead">
+
+<h2>
+✨ Yeni Oyunlar
+</h2>
+
+</div>
+
+<div id="newGames"
+class="gameGrid">
+</div>
+
+</section>
+
+
+<!-- TÜM OYUNLAR -->
+
+<section class="section">
+
+<div class="sectionHead">
+
+<h2>
+🎮 Tüm Oyunlar
+</h2>
+
+<span id="gameCount">
+600 oyun
+</span>
+
+</div>
+
+<div id="games"
+class="gameGrid">
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<!-- OYUN MODAL -->
+
+<div id="gameModal" class="modal">
+
+<div class="modalBox">
+
+<button
+class="close"
+onclick="closeModal('gameModal')">
+✕
+</button>
+
+<h2 id="gameTitle">
+Oyun
+</h2>
+
+<div id="stage"
+class="stage">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- KURUCU -->
+
+<div id="ownerModal" class="modal">
+
+<div class="modalBox">
+
+<button
+class="close"
+onclick="closeModal('ownerModal')">
+✕
+</button>
+
+
+<div id="login">
+
+<h2>👑 Kurucu Paneli</h2>
+
+<p>Kurucu şifresini gir:</p>
+
+<input
+id="password"
+type="password"
+class="adminInput"
+placeholder="Şifre"
+>
+
+<button
+class="action"
+onclick="login()">
+Giriş
+</button>
+
+<p id="error"></p>
+
+</div>
+
+
+<div id="admin"
+style="display:none">
+
+<h2>👑 Roman.com Yönetim Merkezi</h2>
+
+<div class="adminStats">
+
+<div class="stat">
+Aktif kullanıcı
+<b>1.284</b>
+</div>
+
+<div class="stat">
+Oyun
+<b id="total">
+600
+</b>
+</div>
+
+<div class="stat">
+Bugünkü oynama
+<b>18.4K</b>
+</div>
+
+<div class="stat">
+Sunucu
+<b>ONLINE</b>
+</div>
+
+</div>
+
+
+<h3>Yeni oyun ekle</h3>
+
+<input
+id="newGame"
+class="adminInput"
+placeholder="Oyun adı"
+>
+
+<select
+id="newCategory"
+class="adminInput">
+
+<option>Aksiyon</option>
+<option>Bulmaca</option>
+<option>Yarış</option>
+<option>Spor</option>
+<option>2 Oyuncu</option>
+<option>Arcade</option>
+
+</select>
+
+<button
+class="action"
+onclick="addGame()">
+➕ Oyun Ekle
+</button>
+
+
+<h3>Yönetim</h3>
+
+<button
+class="action"
+onclick="alert('Kullanıcı yönetimi açıldı')">
+👤 Kullanıcılar
+</button>
+
+<button
+class="action"
+onclick="alert('Demo ban sistemi açıldı')">
+🚫 Ban Sistemi
+</button>
+
+<button
+class="action"
+onclick="alert('Demo ödül sistemi açıldı')">
+💰 Ödüller
+</button>
+
+<button
+class="action"
+onclick="alert('Oyun kontrolü tamamlandı')">
+🛠️ Oyunları Kontrol Et
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ================================
+   600 OYUN OLUŞTUR
+================================ */
+
+const categories=[
+"Aksiyon",
+"Bulmaca",
+"Yarış",
+"Spor",
+"2 Oyuncu",
+"Arcade"
+];
+
+const names=[
+"Neon Rush",
+"Pixel Arena",
+"Cyber Runner",
+"Space Dash",
+"Turbo Drift",
+"Block Master",
+"Goal Heroes",
+"Maze Night",
+"Alien Attack",
+"Ninja Clash",
+"Gem Hunter",
+"Rocket Hop",
+"Galaxy Battle",
+"Street Racer",
+"Monster Jump",
+"Laser Hero",
+"Castle War",
+"Football Star",
+"Speed Driver",
+"Color Puzzle"
+];
+
+const icons=[
+"🚀",
+"⚔️",
+"🏎️",
+"⚽",
+"🧩",
+"👾",
+"🔥",
+"🎯",
+"🧙",
+"🛸",
+"🥷",
+"🏆",
+"🎮",
+"🚁",
+"💎"
+];
+
+let games=[];
+
+for(let i=1;i<=600;i++){
+
+games.push({
+
+id:i,
+
+name:
+names[(i-1)%names.length]
++" "+i,
+
+cat:
+categories[(i-1)%categories.length],
+
+icon:
+icons[(i-1)%icons.length],
+
+plays:
+Math.floor(
+1000+
+Math.random()*999000
+)
+
+});
+
+}
+
+
+let currentCategory="Tümü";
+
+
+/* ================================
+   OYUNLARI ÇİZ
+================================ */
+
+function render(){
+
+let query=
+document
+.getElementById("search")
+.value
+.toLowerCase();
+
+
+let list=
+games.filter(g=>{
+
+let catOK=
+currentCategory==="Tümü" ||
+currentCategory==="Popüler" && g.plays>500000 ||
+currentCategory==="Yeni" && g.id>540 ||
+g.cat===currentCategory;
+
+return catOK &&
+g.name.toLowerCase().includes(query);
+
+});
+
+
+document.getElementById("gameCount")
+.textContent=
+list.length+" oyun";
+
+
+document.getElementById("games")
+.innerHTML=
+list.map(gameCard).join("");
+
+
+let popular=
+[...games]
+.sort((a,b)=>b.plays-a.plays)
+.slice(0,12);
+
+
+document.getElementById("popular")
+.innerHTML=
+popular.map(gameCard).join("");
+
+
+let newest=
+games
+.slice(-12)
+.reverse();
+
+
+document.getElementById("newGames")
+.innerHTML=
+newest.map(gameCard).join("");
+
+}
+
+
+function gameCard(g){
+
+return `
+
+<div class="game"
+onclick="play(${g.id})">
+
+<div
+class="gameImg"
+style="
+background:
+linear-gradient(
+135deg,
+hsl(${g.id*37%360} 70% 30%),
+hsl(${g.id*61%360} 70% 12%)
+);
+">
+
+${g.icon}
+
+<span>
+${g.cat}
+</span>
+
+</div>
+
+<div class="gameBody">
+
+<div class="gameTitle">
+${escapeHTML(g.name)}
+</div>
+
+<div class="gameInfo">
+▶ ${g.plays.toLocaleString("tr-TR")} oynama
+</div>
+
+<button
+class="playBtn"
+onclick="event.stopPropagation();play(${g.id})">
+OYNA
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   MENÜ
+================================ */
+
+function category(c,el){
+
+currentCategory=c;
+
+if(el){
+
+document
+.querySelectorAll(".menu")
+.forEach(x=>
+x.classList.remove("active")
+);
+
+el.classList.add("active");
+
+}
+
+render();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+function showPopular(){
+
+currentCategory="Popüler";
+
+render();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+function home(){
+
+currentCategory="Tümü";
+
+document
+.getElementById("search")
+.value="";
+
+render();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* ================================
+   RASTGELE
+================================ */
+
+function randomGame(){
+
+let game=
+games[
+Math.floor(
+Math.random()*games.length
+)
+];
+
+play(game.id);
+
+}
+
+
+/* ================================
+   OYUN AÇ
+================================ */
+
+function play(id){
+
+let game=
+games.find(g=>g.id===id);
+
+if(!game)return;
+
+game.plays++;
+
+document.getElementById("gameTitle")
+.textContent=
+game.icon+" "+game.name;
+
+openModal("gameModal");
+
+
+if(game.cat==="Bulmaca"){
+
+puzzle();
+
+}
+
+else if(game.cat==="Yarış"){
+
+race();
+
+}
+
+else if(game.cat==="2 Oyuncu"){
+
+twoPlayer();
+
+}
+
+else{
+
+clickGame();
+
+}
+
+render();
+
+}
+
+
+/* ================================
+   TIKLAMA OYUNU
+================================ */
+
+function clickGame(){
+
+let score=0;
+let time=10;
+let started=false;
+let timer;
+
+
+document.getElementById("stage")
+.innerHTML=`
+
+<div class="center">
+
+<h2>
+⚡ Neon Clicker
+</h2>
+
+<p>
+10 saniyede mümkün olduğunca çok tıkla.
+</p>
+
+<div
+class="score"
+id="score">
+0
+</div>
+
+<button
+class="action"
+id="clickBtn">
+BAŞLA
+</button>
+
+<h3 id="timer">
+10
+</h3>
+
+</div>
+
+`;
+
+
+document
+.getElementById("clickBtn")
+.onclick=function(){
+
+if(!started){
+
+started=true;
+
+this.textContent="TIKLA!";
+
+timer=setInterval(()=>{
+
+time--;
+
+document
+.getElementById("timer")
+.textContent=time;
+
+if(time<=0){
+
+clearInterval(timer);
+
+this.disabled=true;
+
+this.textContent="🏆 BİTTİ!";
+
+}
+
+},1000);
+
+return;
+
+}
+
+score++;
+
+document
+.getElementById("score")
+.textContent=score;
+
+};
+
+}
+
+
+/* ================================
+   YARIŞ
+================================ */
+
+function race(){
+
+let score=0;
+
+
+document.getElementById("stage")
+.innerHTML=`
+
+<div class="center">
+
+<h2>🏎️ Turbo Race</h2>
+
+<p>
+30 kez bas ve yarışı kazan!
+</p>
+
+<div
+class="score"
+id="raceScore">
+0 / 30
+</div>
+
+<button
+class="action"
+id="raceBtn">
+GAZA BAS!
+</button>
+
+</div>
+
+`;
+
+
+document
+.getElementById("raceBtn")
+.onclick=function(){
+
+score++;
+
+document
+.getElementById("raceScore")
+.textContent=
+score+" / 30";
+
+if(score>=30){
+
+this.textContent=
+"🏆 KAZANDIN!";
+
+this.disabled=true;
+
+}
+
+};
+
+}
+
+
+/* ================================
+   BULMACA
+================================ */
+
+function puzzle(){
+
+let answer=
+Math.floor(
+Math.random()*9
+)+2;
+
+
+let options=[
+answer,
+answer+1,
+answer-1,
+answer+3
+].sort(
+()=>Math.random()-.5
+);
+
+
+document.getElementById("stage")
+.innerHTML=`
+
+<div class="center">
+
+<h2>🧩 Sayı Bulmacası</h2>
+
+<p>
+Doğru sayı:
+<b>${answer}</b>
+</p>
+
+${options.map(n=>`
+
+<button
+class="action puzzleAnswer"
+data-value="${n}">
+${n}
+</button>
+
+`).join("")}
+
+<h2 id="result"></h2>
+
+</div>
+
+`;
+
+
+document
+.querySelectorAll(".puzzleAnswer")
+.forEach(btn=>{
+
+btn.onclick=function(){
+
+if(
+Number(this.dataset.value)
+===answer
+){
+
+document
+.getElementById("result")
+.textContent=
+"🎉 DOĞRU!";
+
+}
+
+else{
+
+document
+.getElementById("result")
+.textContent=
+"❌ Yanlış, tekrar dene.";
+
+}
+
+};
+
+});
+
+}
+
+
+/* ================================
+   2 OYUNCU
+================================ */
+
+function twoPlayer(){
+
+let p1=0;
+let p2=0;
+let turn=1;
+
+
+document.getElementById("stage")
+.innerHTML=`
+
+<div class="center">
+
+<h2>👥 2 Oyuncu</h2>
+
+<p>
+İlk 10 puana ulaşan kazanır.
+</p>
+
+<div class="score">
+
+<span id="p1">
+0
+</span>
+
+-
+
+<span id="p2">
+0
+</span>
+
+</div>
+
+<button
+class="action"
+id="twoButton">
+OYUNCU 1
+</button>
+
+<h2 id="winner"></h2>
+
+</div>
+
+`;
+
+
+document
+.getElementById("twoButton")
+.onclick=function(){
+
+if(turn===1){
+
+p1++;
+
+document.getElementById("p1")
+.textContent=p1;
+
+turn=2;
+
+}
+
+else{
+
+p2++;
+
+document.getElementById("p2")
+.textContent=p2;
+
+turn=1;
+
+}
+
+
+if(p1>=10 || p2>=10){
+
+document.getElementById("winner")
+.textContent=
+p1>=10
+?"🏆 OYUNCU 1 KAZANDI!"
+:"🏆 OYUNCU 2 KAZANDI!";
+
+this.disabled=true;
+
+}
+
+else{
+
+this.textContent=
+"OYUNCU "+turn;
+
+}
+
+};
+
+}
+
+
+/* ================================
+   KURUCU PANEL
+================================ */
+
+function openOwner(){
+
+openModal("ownerModal");
+
+}
+
+
+function login(){
+
+let pass=
+document
+.getElementById("password")
+.value;
+
+
+if(pass==="romanbabapro"){
+
+document
+.getElementById("login")
+.style.display="none";
+
+document
+.getElementById("admin")
+.style.display="block";
+
+}
+
+else{
+
+document
+.getElementById("error")
+.textContent=
+"❌ Şifre yanlış.";
+
+}
+
+}
+
+
+function addGame(){
+
+let name=
+document
+.getElementById("newGame")
+.value
+.trim();
+
+
+if(!name){
+
+alert("Oyun adı yaz.");
+
+return;
+
+}
+
+
+games.unshift({
+
+id:Date.now(),
+
+name:name,
+
+cat:
+document
+.getElementById("newCategory")
+.value,
+
+icon:"🎮",
+
+plays:0
+
+});
+
+
+document
+.getElementById("newGame")
+.value="";
+
+
+document.getElementById("total")
+.textContent=
+games.length;
+
+render();
+
+alert(
+"✅ "+name+
+" Roman.com'a eklendi!"
+);
+
+}
+
+
+/* ================================
+   MODAL
+================================ */
+
+function openModal(id){
+
+document
+.getElementById(id)
+.classList.add("open");
+
+}
+
+
+function closeModal(id){
+
+document
+.getElementById(id)
+.classList.remove("open");
+
+}
+
+
+/* ================================
+   GÜVENLİ HTML
+================================ */
+
+function escapeHTML(text){
+
+return text.replace(
+/[&<>"']/g,
+function(c){
+
+return {
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[c];
+
+});
+
+}
+
+
+/* ================================
+   BAŞLAT
+================================ */
+
+render();
+
+</script>
+
+</body>
+</html>
